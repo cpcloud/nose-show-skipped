@@ -1,11 +1,14 @@
 from setuptools import setup
 
 
-setup(name='showskipped',
-      version='1.0',
+setup(name='nose-show-skipped',
+      version='0.1',
+      url='https://github.com/cpcloud/nose-show-skipped',
+      author='Phillip Cloud',
+      author_email='cpcloud@gmail.com',
       maintainer='Phillip Cloud',
       maintainer_email='cpcloud@gmail.com',
-      description='nose plugin to show skipped tests and their messages',
+      description='A nose plugin to show skipped tests and their messages',
       install_requires=['nose'],
       license='BSD 3-clause',
       keywords='test unittest nose nosetests plugin',
