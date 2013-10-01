@@ -1,4 +1,5 @@
 import itertools
+from operator import attrgetter
 from collections import namedtuple
 
 from nose.plugins import Plugin
@@ -26,7 +27,10 @@ class ShowSkipped(Plugin):
 
     def _get_test_info(self, skipped):
         test, exc = skipped
-        filename, module, testname = test.address()
+        try:
+            filename, module, testname = test.address()
+        except AttributeError:
+            filename, module, testname = None, None, None
 
         if testname is not None and '.' in testname:
             klass, function = testname.split('.')
@@ -53,7 +57,7 @@ class ShowSkipped(Plugin):
     def finalize(self, result):
         self.stream.writeln()
 
-        gb = self._get_test_module_groupby(result.skipped, lambda k: k.klass)
+        gb = self._get_test_module_groupby(result.skipped, attrgetter('klass'))
         for klass, group in gb:
             res = self._format_group(group)
             self.stream.writeln(res)
