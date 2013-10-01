@@ -35,7 +35,7 @@ class ShowSkipped(Plugin):
         if testname is not None and '.' in testname:
             klass, function = testname.split('.')
         else:
-            klass, function = None, testname or 'toplevel'
+            klass, function = None, testname or '<toplevel>'
 
         return SkippedInfo(module=module, klass=klass, function=function,
                            message=str(exc))
